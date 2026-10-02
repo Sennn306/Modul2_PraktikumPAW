@@ -1,69 +1,113 @@
-import Image from "next/image";
+import Link from "next/link";
 
-export default function Home() {
-  return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
-  );
+const fitur = [
+ { judul: "Fitur pertama", deskripsi: "Manfaat fitur bagi pengguna." },
+ { judul: "Fitur kedua", deskripsi: "Manfaat fitur bagi pengguna." },
+ { judul: "Fitur ketiga", deskripsi: "Manfaat fitur bagi pengguna." },
+];
+
+const kolom =
+ "rounded border px-3 py-2 focus-visible:outline-2 " +
+ "focus-visible:outline-offset-2 focus-visible:outline-blue-700";
+// di dalam <section id="fitur">
+
+export default function Beranda() {
+ return (
+ <>
+ <a href="#konten" className="sr-only focus:not-sr-only focus:p-2">
+ Lewati ke konten utama
+ </a>
+ <header className="bg-brand">
+ <nav aria-label="Navigasi utama" className="mx-auto flex max-w-6xl felx-col gap-3 p-4 sm:flex-row sm:items-center sm:justify-between">
+ <Link href="/" className="text-lg font-bold">NamaProduk</Link>
+ <ul className="flex flex-col gap-2 sm:flex-row sm:gap-6">
+  <ul className="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+ <li><a href="#fitur">Fitur</a></li>
+ <li><a href="#kontak">Kontak</a></li>
+  </ul>
+ </ul>
+ </nav>
+ </header>
+ <main id="konten" className="mx-auto max-w-6xl p-4">
+
+
+  
+ <section aria-labelledby="judul-utama">
+ <h1 id="judul-utama">Kalimat nilai utama produk</h1>
+ <p>Penjelasan singkat permasalahan dan solusi produk.</p>
+ </section>
+ <section id="fitur" aria-labelledby="judul-fitur">
+  
+ <h2 id="judul-fitur">Fitur Utama</h2>
+ {/* kartu fitur ditambahkan pada Bagian 2 */}
+ <ul className="mt-6 grid grid-cols-3 gap-6">
+ {fitur.map((f) => (
+ <li key={f.judul}>
+ <article className="h-full rounded-lg border p-6">
+ <h3 className="text-lg font-semibold">{f.judul}</h3>
+ <p className="mt-2 text-gray-700">{f.deskripsi}</p>
+ </article>
+ </li>
+ ))}
+</ul>
+
+<div className="grid gap-8 lg:grid-cols-[2fr_1fr]">
+ <section aria-labelledby="judul-cara">
+ <h2 id="judul-cara">Cara Kerja</h2>
+ ...
+ </section>
+ <aside aria-label="Informasi tambahan"
+ className="rounded-lg bg-gray-100 p-6">
+ ...
+ </aside>
+</div>
+
+
+ </section>
+ <section id="kontak" aria-labelledby="judul-kontak">
+ <h2 id="judul-kontak">Hubungi Kami</h2>
+ {/* formulir ditambahkan pada Bagian 4 */}
+ <form className="mt-4 grid max-w-xl gap-4">
+ <div className="flex flex-col gap-1">
+ <label htmlFor="nama" className="font-medium">Nama lengkap</label>
+ <input id="nama" name="nama" type="text" required
+ autoComplete="name" className={kolom} />
+ </div>
+ <div className="flex flex-col gap-1">
+ <label htmlFor="email" className="font-medium">Surel</label>
+ <input id="email" name="email" type="email" required
+ autoComplete="email" aria-describedby="email-bantuan"
+ className={kolom} />
+ <p id="email-bantuan" className="text-sm text-gray-600">
+ Gunakan alamat surel yang aktif.
+ </p>
+ </div>
+ <fieldset className="flex flex-col gap-1">
+ <legend className="font-medium">Peran</legend>
+ <label>
+ <input type="radio" name="peran" value="pengguna" /> Pengguna
+ </label>
+ <label>
+ <input type="radio" name="peran" value="mitra" /> Mitra
+ </label>
+ </fieldset>
+ <div className="flex flex-col gap-1">
+ <label htmlFor="pesan" className="font-medium">Pesan</label>
+ <textarea id="pesan" name="pesan" rows={4} className={kolom} />
+ </div>
+ <button type="submit"
+ className={kolom + " bg-blue-700 font-semibold text-white"}>
+ Kirim
+ </button>
+</form>
+ </section>
+ </main>
+ <footer className="border-t">
+ <p>© 2026 Nama Produk</p>
+ </footer>
+ </>
+ );
+
+
+
 }

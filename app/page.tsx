@@ -1,113 +1,59 @@
 import Link from "next/link";
-
-const fitur = [
- { judul: "Fitur pertama", deskripsi: "Manfaat fitur bagi pengguna." },
- { judul: "Fitur kedua", deskripsi: "Manfaat fitur bagi pengguna." },
- { judul: "Fitur ketiga", deskripsi: "Manfaat fitur bagi pengguna." },
-];
-
-const kolom =
- "rounded border px-3 py-2 focus-visible:outline-2 " +
- "focus-visible:outline-offset-2 focus-visible:outline-blue-700";
-// di dalam <section id="fitur">
+import Bagian from "@/components/Bagian";
+import ItemTerbaru from "@/components/ItemTerbaru";
 
 export default function Beranda() {
- return (
- <>
- <a href="#konten" className="sr-only focus:not-sr-only focus:p-2">
- Lewati ke konten utama
- </a>
- <header className="bg-brand">
- <nav aria-label="Navigasi utama" className="mx-auto flex max-w-6xl felx-col gap-3 p-4 sm:flex-row sm:items-center sm:justify-between">
- <Link href="/" className="text-lg font-bold">NamaProduk</Link>
- <ul className="flex flex-col gap-2 sm:flex-row sm:gap-6">
-  <ul className="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
- <li><a href="#fitur">Fitur</a></li>
- <li><a href="#kontak">Kontak</a></li>
-  </ul>
- </ul>
- </nav>
- </header>
- <main id="konten" className="mx-auto max-w-6xl p-4">
+  return (
+    <main id="konten" className="mx-auto max-w-6xl p-4">
+      <section aria-labelledby="judul-utama" className="py-8">
+        <h1 id="judul-utama" className="text-4xl font-extrabold tracking-tight">Sistem Pemantauan Energi & Lingkungan Kampus</h1>
+        <p className="mt-4 text-lg text-gray-600">Platform terpadu untuk memantau penggunaan energi dan parameter lingkungan di seluruh fasilitas kampus secara real-time, mewujudkan kampus hijau yang efisien dan berkelanjutan.</p>
+      </section>
 
+      <div className="grid gap-8 lg:grid-cols-[2fr_1fr]">
+        <Bagian id="cara-kerja" judul="Cara Kerja">
+          <p className="text-gray-700 leading-relaxed mb-4">Sistem ini mengumpulkan data dari berbagai sensor cerdas (IoT) yang tersebar di lingkungan kampus, termasuk panel surya, turbin angin mini, dan sensor kualitas udara. Data tersebut dikirimkan secara nirkabel ke server pusat untuk diproses dan dianalisis.</p>
+          <p className="text-gray-700 leading-relaxed">Pengelola kampus dapat melihat informasi real-time dan laporan berkala melalui antarmuka web interaktif ini. Peringatan dini akan dikirimkan otomatis jika mendeteksi penggunaan energi yang tidak wajar atau parameter kualitas udara yang menurun.</p>
+        </Bagian>
 
-  
- <section aria-labelledby="judul-utama">
- <h1 id="judul-utama">Kalimat nilai utama produk</h1>
- <p>Penjelasan singkat permasalahan dan solusi produk.</p>
- </section>
- <section id="fitur" aria-labelledby="judul-fitur">
-  
- <h2 id="judul-fitur">Fitur Utama</h2>
- {/* kartu fitur ditambahkan pada Bagian 2 */}
- <ul className="mt-6 grid grid-cols-3 gap-6">
- {fitur.map((f) => (
- <li key={f.judul}>
- <article className="h-full rounded-lg border p-6">
- <h3 className="text-lg font-semibold">{f.judul}</h3>
- <p className="mt-2 text-gray-700">{f.deskripsi}</p>
- </article>
- </li>
- ))}
-</ul>
+        <aside aria-label="Informasi tambahan" className="rounded-lg bg-gray-100 p-6 self-start mt-8 lg:mt-0">
+          <h3 className="font-semibold text-lg mb-2">Kenapa ini penting?</h3>
+          <ul className="list-disc pl-5 text-gray-700 space-y-2">
+            <li>Menghemat biaya operasional kampus.</li>
+            <li>Mengurangi jejak karbon (carbon footprint).</li>
+            <li>Menciptakan lingkungan belajar yang lebih sehat dan nyaman.</li>
+          </ul>
+        </aside>
+      </div>
 
-<div className="grid gap-8 lg:grid-cols-[2fr_1fr]">
- <section aria-labelledby="judul-cara">
- <h2 id="judul-cara">Cara Kerja</h2>
- ...
- </section>
- <aside aria-label="Informasi tambahan"
- className="rounded-lg bg-gray-100 p-6">
- ...
- </aside>
-</div>
+      <Bagian id="terbaru" judul="Item Terbaru">
+        <ItemTerbaru />
+      </Bagian>
 
-
- </section>
- <section id="kontak" aria-labelledby="judul-kontak">
- <h2 id="judul-kontak">Hubungi Kami</h2>
- {/* formulir ditambahkan pada Bagian 4 */}
- <form className="mt-4 grid max-w-xl gap-4">
- <div className="flex flex-col gap-1">
- <label htmlFor="nama" className="font-medium">Nama lengkap</label>
- <input id="nama" name="nama" type="text" required
- autoComplete="name" className={kolom} />
- </div>
- <div className="flex flex-col gap-1">
- <label htmlFor="email" className="font-medium">Surel</label>
- <input id="email" name="email" type="email" required
- autoComplete="email" aria-describedby="email-bantuan"
- className={kolom} />
- <p id="email-bantuan" className="text-sm text-gray-600">
- Gunakan alamat surel yang aktif.
- </p>
- </div>
- <fieldset className="flex flex-col gap-1">
- <legend className="font-medium">Peran</legend>
- <label>
- <input type="radio" name="peran" value="pengguna" /> Pengguna
- </label>
- <label>
- <input type="radio" name="peran" value="mitra" /> Mitra
- </label>
- </fieldset>
- <div className="flex flex-col gap-1">
- <label htmlFor="pesan" className="font-medium">Pesan</label>
- <textarea id="pesan" name="pesan" rows={4} className={kolom} />
- </div>
- <button type="submit"
- className={kolom + " bg-blue-700 font-semibold text-white"}>
- Kirim
- </button>
-</form>
- </section>
- </main>
- <footer className="border-t">
- <p>© 2026 Nama Produk</p>
- </footer>
- </>
- );
-
-
-
+      <Bagian id="kontak" judul="Hubungi Kami">
+        <form className="mt-4 grid max-w-xl gap-4">
+          <div className="flex flex-col gap-1">
+            <label htmlFor="nama" className="font-medium">Nama lengkap</label>
+            <input id="nama" name="nama" type="text" required autoComplete="name" className="rounded border px-3 py-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700" />
+          </div>
+          <div className="flex flex-col gap-1">
+            <label htmlFor="email" className="font-medium">Surel</label>
+            <input id="email" name="email" type="email" required autoComplete="email" aria-describedby="email-bantuan" className="rounded border px-3 py-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700" />
+            <p id="email-bantuan" className="text-sm text-gray-600">Gunakan alamat surel yang aktif.</p>
+          </div>
+          <fieldset className="flex flex-col gap-1">
+            <legend className="font-medium">Peran</legend>
+            <label><input type="radio" name="peran" value="mahasiswa" /> Mahasiswa</label>
+            <label><input type="radio" name="peran" value="dosen" /> Dosen/Staf</label>
+            <label><input type="radio" name="peran" value="lainnya" /> Lainnya</label>
+          </fieldset>
+          <div className="flex flex-col gap-1">
+            <label htmlFor="pesan" className="font-medium">Pesan</label>
+            <textarea id="pesan" name="pesan" rows={4} className="rounded border px-3 py-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700" />
+          </div>
+          <button type="submit" className="rounded border px-3 py-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700 bg-blue-700 font-semibold text-white">Kirim</button>
+        </form>
+      </Bagian>
+    </main>
+  );
 }
